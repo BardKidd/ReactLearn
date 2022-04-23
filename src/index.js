@@ -21,44 +21,18 @@ function Square(props) {
 }
 
 class Board extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      squares: Array(9).fill(null),
-      xIsNext: true,
-    };
-  }
-
-  handleClick(i) {
-    const squares = this.state.squares.slice();
-    if (calculateWinner(squares) || squares[i]) return;
-
-    squares[i] = this.state.xIsNext ? "X" : "O";
-    // setState 為自定義事件，去修改 this.state.squares 的值。
-    this.setState({
-      squares: squares,
-      xIsNext: !this.state.xIsNext,
-    });
-  }
-
   renderSquare(i) {
     return (
       <Square
-        customerValue={this.state.squares[i]}
-        onClick={() => this.handleClick(i)}
+        customerValue={this.props.squares[i]}
+        onClick={() => this.props.onClick(i)}
       />
     );
   }
 
   render() {
-    const winner = calculateWinner(this.state.squares);
-    let status = winner
-      ? `Winner: ${winner}`
-      : `Next player: ${this.state.xIsNext ? "X" : "O"}`;
-
     return (
       <div>
-        <div className="status">{status}</div>
         <div className="border-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -80,21 +54,79 @@ class Board extends React.Component {
 }
 
 class Game extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      history: [
+        {
+          squares: Array(9).fill(null),
+        },
+      ],
+      xIsNext: true,
+      stepNumber: 0,
+    };
+  }
+
+  handleClick(i) {
+    const history = this.state.history.slice(0, this.state.stepNumber + 1); // 點擊按鈕後「回到過去」，就必須把「未來」事件刪除。
+    const current = history[history.length - 1];
+    const squares = current.squares.slice();
+    if (calculateWinner(squares) || squares[i]) return;
+    squares[i] = this.state.xIsNext ? "X" : "O";
+    this.setState({
+      history: history.concat([
+        {
+          squares: squares,
+        },
+      ]),
+      stepNumber: history.length,
+      xIsNext: !this.state.xIsNext,
+    });
+  }
+
+  jumpTo(step) {
+    this.setState({
+      stepNumber: step,
+      xIsNext: step % 2 === 0, // 不是偶數就為 true
+    });
+  }
+
   render() {
+    const history = this.state.history;
+    const current = history[this.state.stepNumber];
+    const winner = calculateWinner(current.squares);
+
+    // 移動按鈕
+    const moves = history.map((step, move) => {
+      const desc = move ? `Go to move #${move}` : "Go to game start";
+      return (
+        <li key={move}>
+          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+        </li>
+      );
+    });
+
+    let status = winner
+      ? `Winner: ${winner}`
+      : `Next player: ${this.state.xIsNext ? "X" : "O"}`;
     return (
       <div className="game">
         <div className="game-board">
-          <Board />
+          <Board
+            squares={current.squares}
+            onClick={(i) => this.handleClick(i)}
+          />
         </div>
         <div className="game-info">
-          <div>{}</div>
-          <ol>{}</ol>
+          <div>{status}</div>
+          <ol>{moves}</ol>
         </div>
       </div>
     );
   }
 }
 
+// 判斷是否有贏家了，在本次教學範例中不是太重要。
 function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
