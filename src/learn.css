@@ -1,0 +1,11 @@
+.card {
+  border: 1px solid black;
+  padding: 5px 10px;
+  flex: 1;
+}
+.card > img {
+  object-fit: cover;
+  object-position: center;
+  width: 200px;
+  height: 200px;
+}
