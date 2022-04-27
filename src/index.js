@@ -4,6 +4,7 @@ import "./index.css";
 import "./fetch.css";
 import RandomMeal from "./fetch";
 import ClassJSX, { CreateBtn, JSXAPP } from "./jsx";
+import FunctionCom from "./functionCom";
 
 // class Square extends React.Component {
 //   render() {
@@ -135,7 +136,10 @@ class Game extends React.Component {
           {CreateBtn()}
           <JSXAPP>芝麻凜好香</JSXAPP>
 
-          <ClassJSX name="芝麻凜我婆"></ClassJSX>
+          <ClassJSX></ClassJSX>
+        </div>
+        <div>
+          <FunctionCom></FunctionCom>
         </div>
       </Fragment>
     );

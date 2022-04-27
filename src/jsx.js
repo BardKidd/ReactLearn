@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 // const name = "Shima Rin";
 // function clickMe() {
@@ -28,14 +28,43 @@ export const JSXAPP = (props) => {
 };
 
 class ClassJSX extends React.Component {
-  //   constructor(props) {
-  //     super(props);
-  //     this.state = {
-  //       name: "芝麻凜",
-  //     };
-  //   }
+  constructor(props) {
+    super(props);
+    this.state = {
+      waifu: "芝麻凜",
+      isChange: false,
+      obj: {
+        age: 16,
+        job: "女子高生",
+      },
+    };
+    this.changeName = this.changeName.bind(this);
+  }
+
+  changeName() {
+    this.setState(
+      {
+        waifu: "各務原撫子",
+        obj: {
+          ...this.state.obj,
+          age: 17,
+        },
+      },
+      () => {
+        console.log("obj", this.state.obj);
+      }
+    );
+    this.setState({
+      isChange: undefined,
+    });
+  }
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return (
+      <Fragment>
+        <button onClick={this.changeName}>我婆轉換</button>
+        <h1>我婆, {this.state.waifu}！</h1>
+      </Fragment>
+    );
   }
 }
 
