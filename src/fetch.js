@@ -1,11 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import "./learn.css";
+import "./fetch.css";
 
 function Card(props) {
   return (
     <div className="card">
-      <img src={props.meal.strMealThumb}></img>
+      <img src={props.meal.strMealThumb} alt="餐點圖片"></img>
       <div>
         <h2>{props.meal.strMeal}</h2>
         <p>{props.meal.strInstructions}</p>

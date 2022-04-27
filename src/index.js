@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import "./learn.css";
-import RandomMeal from "./learn";
+import "./fetch.css";
+import RandomMeal from "./fetch";
+import ClassJSX, { CreateBtn, JSXAPP } from "./jsx";
 
 // class Square extends React.Component {
 //   render() {
@@ -129,6 +130,12 @@ class Game extends React.Component {
           <RandomMeal />
           <RandomMeal />
           <RandomMeal />
+        </div>
+        <div>
+          {CreateBtn()}
+          <JSXAPP>芝麻凜好香</JSXAPP>
+
+          <ClassJSX name="芝麻凜我婆"></ClassJSX>
         </div>
       </Fragment>
     );
