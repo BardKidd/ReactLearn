@@ -41,6 +41,14 @@ class ClassJSX extends React.Component {
     this.changeName = this.changeName.bind(this);
   }
 
+  static getDerivedStateFromProps(props, state) {
+    console.log("props", props);
+    console.log("state", state);
+    if (state.waifu === "芝麻凜") {
+      return (state.waifu = "各務原撫子");
+    }
+  }
+
   changeName() {
     this.setState(
       {
