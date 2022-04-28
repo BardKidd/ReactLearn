@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 const FunctionCom = () => {
   const [waifu, setWaifu] = useState("芝麻凜");
@@ -7,6 +7,15 @@ const FunctionCom = () => {
     age: 16,
     job: "女子高生",
   });
+
+  useEffect(() => {
+    if (waifu === "芝麻凜") {
+      setWaifu("齊藤惠那");
+      return () => {
+        setWaifu("齋藤惠那不是我婆");
+      };
+    }
+  }, [waifu]);
 
   return (
     <Fragment>
