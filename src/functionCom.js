@@ -8,6 +8,7 @@ const FunctionCom = () => {
     job: "女子高生",
   });
 
+  console.log(isChange);
   useEffect(() => {
     if (waifu === "芝麻凜") {
       setWaifu("齊藤惠那");

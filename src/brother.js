@@ -23,7 +23,6 @@ class Brother extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps.money, this.props.money);
     if (prevProps.money !== this.props.money) {
       this.setMyFeeling();
     }

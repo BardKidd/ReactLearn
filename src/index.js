@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom/client";
 import Parent from "./father";
+
+import FunParent from "./funFather";
 // import "./index.css";
 // import "./fetch.css";
 // import RandomMeal from "./fetch";
@@ -117,6 +119,8 @@ class Game extends React.Component {
     return (
       <Fragment>
         <Parent></Parent>
+        <hr></hr>
+        <FunParent></FunParent>
         {/* <div className="game">
           <div className="game-board">
             <Board
