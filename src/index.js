@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import Parent from "./father";
 
 import FunParent from "./funFather";
+import LocalFetch from "./Pages/LocalFetch";
 // import "./index.css";
 // import "./fetch.css";
 // import RandomMeal from "./fetch";
@@ -121,6 +122,7 @@ class Game extends React.Component {
         <Parent></Parent>
         <hr></hr>
         <FunParent></FunParent>
+        <LocalFetch></LocalFetch>
         {/* <div className="game">
           <div className="game-board">
             <Board
