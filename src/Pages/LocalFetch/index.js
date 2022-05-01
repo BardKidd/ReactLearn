@@ -7,8 +7,23 @@ async function fetchData(setData) {
   setData(data);
 }
 
+async function fetchSetData(data) {
+  await fetch(API_GET_DATA, {
+    method: "PUT",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({ data }),
+  });
+}
+
 const LocalFetch = () => {
-  const [waifu, setData] = useState([]);
+  const [waifu, setData] = useState({});
+
+  useEffect(() => {
+    fetchSetData(waifu);
+  }, [waifu]);
+
   useEffect(() => {
     fetchData(setData);
   }, []);
