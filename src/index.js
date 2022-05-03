@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import ReactDOM from "react-dom/client";
 
 import LocalFetch from "./Pages/LocalFetch";
+import ContextLearn from "./Pages/Context";
 
 class Game extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Game extends React.Component {
     return (
       <Fragment>
         <LocalFetch></LocalFetch>
+        <ContextLearn></ContextLearn>
       </Fragment>
     );
   }

@@ -20,13 +20,13 @@ async function fetchSetData(data) {
 const LocalFetch = () => {
   const [waifu, setData] = useState({});
 
-  useEffect(() => {
-    fetchSetData(waifu);
-  }, [waifu]);
+  // useEffect(() => {
+  //   fetchSetData(waifu);
+  // }, [waifu]);
 
-  useEffect(() => {
-    fetchData(setData);
-  }, []);
+  // useEffect(() => {
+  //   fetchData(setData);
+  // }, []);
 
   return (
     <div>
