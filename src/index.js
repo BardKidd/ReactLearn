@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 
 import LocalFetch from "./Pages/LocalFetch";
 import ContextLearn from "./Pages/Context";
+import Main from "./Pages/TodoList";
 
 class Game extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class Game extends React.Component {
       <Fragment>
         <LocalFetch></LocalFetch>
         <ContextLearn></ContextLearn>
+        <Main></Main>
       </Fragment>
     );
   }
