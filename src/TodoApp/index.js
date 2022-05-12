@@ -1,5 +1,7 @@
+import { useState } from "react";
 import styled from "styled-components";
-import { useAppSelector } from "../hooks";
+import { useAppSelector, useAppDispatch } from "../hooks";
+import { addTimestamp, addTodo } from "../Slices/todo";
 const Wrapper = styled.div`
   padding: 1.5rem;
 `;
@@ -45,12 +47,37 @@ const Item = styled.div`
 function TodoApp() {
   const todoReducer = useAppSelector((state) => state.todoReducer);
   const todoList = todoReducer.todoList;
+  const dispatch = useAppDispatch();
+  const [text, setText] = useState("");
   return (
     <Wrapper>
       <Title>TODO LIST</Title>
-      <NoteInput type="text" />
-      <SubmitBtn>Submit</SubmitBtn>
-      <SubmitBtn>Record Timestamp</SubmitBtn>
+      <NoteInput
+        value={text}
+        type="text"
+        onChange={(e) => {
+          setText(e.target.value);
+        }}
+      />
+      <SubmitBtn
+        onClick={() => {
+          if (!text) {
+            alert("請輸入一些訊息");
+            return;
+          }
+          dispatch(addTodo(text));
+          setText("");
+        }}
+      >
+        Submit
+      </SubmitBtn>
+      <SubmitBtn
+        onClick={() => {
+          dispatch(addTimestamp());
+        }}
+      >
+        Record Timestamp
+      </SubmitBtn>
       <Title>List</Title>
 
       {todoList.map((data, index) => {
